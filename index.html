@@ -366,7 +366,7 @@
 <li>学习：（监督学习、无监督学习、强化学习）</li>
 <li>认知：（知识表示、自然语言理解、推理、规划、决策）</li>
 </ul>
-<p>![图1.1 人工智能发展史](【读书笔记】《神经网络与深度学习》邱锡鹏/图1.1 人工智能发展史.png)</p>
+<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="图1.1人工智能发展史"></p>
 <h2 id="1-2-机器学习"><a href="#1-2-机器学习" class="headerlink" title="1.2 机器学习"></a>1.2 机器学习</h2><p><strong>机器学习（Machine Learning，ML）</strong>：从数据中学习出一般规律，利用规律进行新的预测。</p>
 <p>实际任务中使用机器学习模型的几个步骤：</p>
 <ol>
@@ -375,7 +375,7 @@
 <li><strong>特征转换</strong>：对特征降维（特征抽取和特征选择）和升维。常用方法：主成分分析（Principal Components Analysis，PCA）、线性判别分析（Linear Discriminant Analysis，LDA）等</li>
 <li><strong>预测</strong>：学习一个函数并进行预测</li>
 </ol>
-<p>![图 1.2 传统机器学习的数据处理流程](【读书笔记】《神经网络与深度学习》邱锡鹏/图 1.2 传统机器学习的数据处理流程.png)</p>
+<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.2传统机器学习的数据处理流程"></p>
 <p>很多机器学习问题往往变成了<strong>特征工程（Feature Engineering）</strong>问题</p>
 <h2 id="1-3-表示学习"><a href="#1-3-表示学习" class="headerlink" title="1.3 表示学习"></a>1.3 表示学习</h2><p>机器学习中<strong>表示特征的两种方式</strong>：</p>
 <ul>
@@ -383,17 +383,17 @@
 <li>分布式表示：低维稠密向量 。</li>
 </ul>
 <p><strong>嵌入（Embedding）</strong>：我们使用神经网络将高维的局部表示空间 $\R^{|D|}$ 映射到一个非常低维的分布式表示空间$R^D$，$D\ll|V|$。机器学习中此过程称为嵌入。自然语言中词的分布式表示，经常叫做词嵌入。</p>
-<p>![图 1.3 one-hot向量空间与嵌入空间](【读书笔记】《神经网络与深度学习》邱锡鹏/图 1.3 one-hot向量空间与嵌入空间.png)</p>
+<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png" alt="图1.3one-hot向量空间与嵌入空间"></p>
 <p><strong>表示学习（Representation Learning）</strong>：可以自动学习有效特征，提高机器学习模型性能的学习方法。</p>
 <p>表示学习的关键：构建一定深度的多层次特征表示。因为要学习到一个好的高层语义表示（一般为分布式表示），通常要从底层特征开始经过多次非线性转换才能得到，因此选择深层结构。深层结构可以增加特征的重用性，从而指数级地增加表示能力。</p>
 <p>传统机器学习的特征学习方法：主成分分析、线性判别分析、独立成分分析。</p>
 <h2 id="1-4-深度学习"><a href="#1-4-深度学习" class="headerlink" title="1.4 深度学习"></a>1.4 深度学习</h2><p><strong>深度学习（Deep Learning，DL）</strong>：从数据中学出一个深度模型。从数据中自动学习有效的特征表示。</p>
 <p>深度学习早期主要用来进行表示学习，后来越多越多地用于处理更复杂的推理、决策问题。</p>
-<p>![图 1.4 深度学习的数据处理流程](【读书笔记】《神经网络与深度学习》邱锡鹏/图 1.4 深度学习的数据处理流程.png)</p>
+<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.4深度学习的数据处理流程"></p>
 <p>深度学习所采用的的模型是<strong>神经网络模型</strong>（当然还有其他的模型），主要原因是神经网络模型可以使用误差反向传播算法，可以比较好地解决贡献度分配问题（Credit Assignment Problem，CAP）——一个系统中不同的组件或其参数对最终系统输出结果的贡献或影响。</p>
 <h2 id="1-5-神经网络"><a href="#1-5-神经网络" class="headerlink" title="1.5 神经网络"></a>1.5 神经网络</h2><p><strong>神经网络</strong>，是人工神经网络的简称，即一种模仿人脑神经网络的数学模型，由节点（人工神经元）互相连接组成。不同节点间的连接被赋予不同的权重，每个权重代表一个节点对另一个节点的影响大小。每个节点都代表一种特定的函数，由其他节点传来的信息经过相应权重进行计算，再输入到一个激活函数中得到一个新的节点值。</p>
 <p>1.5.3节神经网络的发展历史</p>
-<h2 id="1-6-本书的知识体系"><a href="#1-6-本书的知识体系" class="headerlink" title="1.6 本书的知识体系"></a>1.6 本书的知识体系</h2><p>![图 1.6 本书的知识体系](【读书笔记】《神经网络与深度学习》邱锡鹏/图 1.6 本书的知识体系.png)</p>
+<h2 id="1-6-本书的知识体系"><a href="#1-6-本书的知识体系" class="headerlink" title="1.6 本书的知识体系"></a>1.6 本书的知识体系</h2><p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="图1.6本书的知识体系"></p>
 <ul>
 <li><p><strong>机器学习</strong>：第2章机器学习的概述，第3章一些基本的线性模型，第9章无监督学习，第10章与模型无关的机器学习方法，第14章深度强化学习。</p>
 </li>
@@ -441,10 +441,20 @@
 </li>
 <li>自然语言处理<ul>
 <li>计算语言学年会（Annual Meeting of the Association for Computational Linguistics，ACL）</li>
-<li>自然语言处理实证方法大会（Conference on Empirical Methods in NaturalLanguage Processing，EMNLP）</li>
+<li>自然语言处理实证方法大会（Conference on Empirical Methods in NaturalLanguage Processing，EMNLP</li>
 </ul>
 </li>
 </ul>
+<p>前文提到的</p>
+<p>机器学习的特征学习。参见第2.6.1节．</p>
+<p>自 动 梯 度 计 算 参 见 第4.5节</p>
+<p>自 动 微 分 参 见 第4.5.3节．</p>
+<p>Hebbian 法则参见第8.6.1节</p>
+<p>Hopfield 网络参见 第8.6.1节</p>
+<p>主成分分析：9.1.1 </p>
+<p>玻 尔 兹 曼 机 参 见第12.1节．</p>
+<p>深 度 信 念 网 络 参 见 第12.3节．</p>
+<p>强化学习14章</p>
   </div>
   
   <p class="article-meta">
