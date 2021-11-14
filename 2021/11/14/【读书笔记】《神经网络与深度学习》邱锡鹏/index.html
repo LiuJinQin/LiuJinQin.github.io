@@ -17,29 +17,29 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>【读书笔记】《神经网络与深度学习》邱锡鹏 | 刘晋芹的博客</title>
-  <meta name="description" content="[TOC]  ch01 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进">
+  <title>【读书笔记】《神经网络与深度学习》邱锡鹏 | L&#39;s blog</title>
+  <meta name="description" content="ch01 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进行新的预测。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【读书笔记】《神经网络与深度学习》邱锡鹏">
-<meta property="og:url" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
-<meta property="og:site_name" content="刘晋芹的个人博客">
-<meta property="og:description" content="[TOC]  ch01 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进">
+<meta property="og:url" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
+<meta property="og:site_name" content="L&#39; Blog">
+<meta property="og:description" content="ch01 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进行新的预测。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
-<meta property="article:published_time" content="2021-11-13T11:38:54.000Z">
-<meta property="article:modified_time" content="2021-11-14T09:30:35.676Z">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
+<meta property="article:published_time" content="2021-11-14T11:38:54.000Z">
+<meta property="article:modified_time" content="2021-11-14T09:59:24.711Z">
 <meta property="article:author" content="liujinqin">
 <meta property="article:tag" content="神经网络与深度学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
+<meta name="twitter:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
+  <link rel="canonical" href="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
   
-    <link rel="alternate" href="/atom.xml" title="刘晋芹的个人博客" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="L&#39; Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.jpg" type="image/x-icon">
@@ -58,7 +58,7 @@
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
 
-<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
   <header class="header" itemscope itemtype="http://schema.org/WPHeader">
   <div class="slimContent">
     <div class="navbar-header">
@@ -68,8 +68,8 @@
         <a id="avatar" href="https://github.com/LiuJinQin" target="_blank">
           <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">刘晋芹</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md">“进”取 &amp; “勤”奋</h3>
+        <h2 id="name" class="hidden-xs hidden-sm">L&#39; Blog</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
         <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shandong, China</small>
       </div>
       
@@ -233,88 +233,11 @@
     
       
   <div class="widget">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">神经网络与深度学习</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-    
-      
-  <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
       <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 13px;">神经网络与深度学习</a>
     </div>
   </div>
-
-    
-      
-  <div class="widget">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">3</span></li></ul>
-    </div>
-  </div>
-
-
-    
-      
-  <div class="widget">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget-body">
-      <ul class="recent-post-list list-unstyled no-thumbnail">
-        
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-              </p>
-              <p class="item-title">
-                <a href="/2021/11/13/hexo%E7%9B%B8%E5%85%B3/" class="title">hexo相关</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2021-11-13T11:57:50.000Z" itemprop="datePublished">2021-11-13</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-              </p>
-              <p class="item-title">
-                <a href="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" class="title">【读书笔记】《神经网络与深度学习》邱锡鹏</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2021-11-13T11:38:54.000Z" itemprop="datePublished">2021-11-13</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                
-              </p>
-              <p class="item-title">
-                <a href="/2021/11/13/test-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" class="title">test-上传图片</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2021-11-13T11:33:43.000Z" itemprop="datePublished">2021-11-13</time>
-              </p>
-            </div>
-          </li>
-          
-      </ul>
-    </div>
-  </div>
-  
 
     
   </div>
@@ -339,8 +262,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" class="article-date">
-	  <time datetime="2021-11-13T11:38:54.000Z" itemprop="datePublished">2021-11-13</time>
+	<a href="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" class="article-date">
+	  <time datetime="2021-11-14T11:38:54.000Z" itemprop="datePublished">2021-11-14</time>
 	</a>
 </span>
         
@@ -358,14 +281,20 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/#comments" class="article-comment-link">评论</a></span>
         
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2.8k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 10(分)</span>
+	
+
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h1 id="ch01-绪论"><a class="markdownIt-Anchor" href="#ch01-绪论"></a> ch01 绪论</h1>
+        <h1 id="ch01-绪论"><a class="markdownIt-Anchor" href="#ch01-绪论"></a> ch01 绪论</h1>
 <h2 id="11-人工智能"><a class="markdownIt-Anchor" href="#11-人工智能"></a> 1.1 人工智能</h2>
 <p><strong>人工智能（Artificial Intelligence，AI）</strong>：让机器拥有人的智能（感知、学习、认知）。</p>
 <ul>
@@ -373,7 +302,7 @@
 <li>学习：（监督学习、无监督学习、强化学习）</li>
 <li>认知：（知识表示、自然语言理解、推理、规划、决策）</li>
 </ul>
-<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="图1.1人工智能发展史"></p>
+<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="图1.1人工智能发展史"></p>
 <h2 id="12-机器学习"><a class="markdownIt-Anchor" href="#12-机器学习"></a> 1.2 机器学习</h2>
 <p><strong>机器学习（Machine Learning，ML）</strong>：从数据中学习出一般规律，利用规律进行新的预测。</p>
 <p>实际任务中使用机器学习模型的几个步骤：</p>
@@ -383,7 +312,7 @@
 <li><strong>特征转换</strong>：对特征降维（特征抽取和特征选择）和升维。常用方法：主成分分析（Principal Components Analysis，PCA）、线性判别分析（Linear Discriminant Analysis，LDA）等</li>
 <li><strong>预测</strong>：学习一个函数并进行预测</li>
 </ol>
-<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.2传统机器学习的数据处理流程"></p>
+<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.2传统机器学习的数据处理流程"></p>
 <p>很多机器学习问题往往变成了**特征工程（Feature Engineering）**问题</p>
 <h2 id="13-表示学习"><a class="markdownIt-Anchor" href="#13-表示学习"></a> 1.3 表示学习</h2>
 <p>机器学习中<strong>表示特征的两种方式</strong>：</p>
@@ -392,20 +321,20 @@
 <li>分布式表示：低维稠密向量 。</li>
 </ul>
 <p><strong>嵌入（Embedding）</strong>：我们使用神经网络将高维的局部表示空间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="double-struck">R</mi><mrow><mi mathvariant="normal">∣</mi><mi>D</mi><mi mathvariant="normal">∣</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\R^{|D|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mtight">∣</span></span></span></span></span></span></span></span></span></span></span></span> 映射到一个非常低维的分布式表示空间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mi>D</mi></msup></mrow><annotation encoding="application/x-tex">R^D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mo>≪</mo><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">D\ll|V|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≪</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord">∣</span></span></span></span>。机器学习中此过程称为嵌入。自然语言中词的分布式表示，经常叫做词嵌入。</p>
-<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png" alt="图1.3one-hot向量空间与嵌入空间"></p>
+<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png" alt="图1.3one-hot向量空间与嵌入空间"></p>
 <p><strong>表示学习（Representation Learning）</strong>：可以自动学习有效特征，提高机器学习模型性能的学习方法。</p>
 <p>表示学习的关键：构建一定深度的多层次特征表示。因为要学习到一个好的高层语义表示（一般为分布式表示），通常要从底层特征开始经过多次非线性转换才能得到，因此选择深层结构。深层结构可以增加特征的重用性，从而指数级地增加表示能力。</p>
 <p>传统机器学习的特征学习方法：主成分分析、线性判别分析、独立成分分析。</p>
 <h2 id="14-深度学习"><a class="markdownIt-Anchor" href="#14-深度学习"></a> 1.4 深度学习</h2>
 <p><strong>深度学习（Deep Learning，DL）</strong>：从数据中学出一个深度模型。从数据中自动学习有效的特征表示。</p>
 <p>深度学习早期主要用来进行表示学习，后来越多越多地用于处理更复杂的推理、决策问题。</p>
-<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.4深度学习的数据处理流程"></p>
+<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.4深度学习的数据处理流程"></p>
 <p>深度学习所采用的的模型是<strong>神经网络模型</strong>（当然还有其他的模型），主要原因是神经网络模型可以使用误差反向传播算法，可以比较好地解决贡献度分配问题（Credit Assignment Problem，CAP）——一个系统中不同的组件或其参数对最终系统输出结果的贡献或影响。</p>
 <h2 id="15-神经网络"><a class="markdownIt-Anchor" href="#15-神经网络"></a> 1.5 神经网络</h2>
 <p><strong>神经网络</strong>，是人工神经网络的简称，即一种模仿人脑神经网络的数学模型，由节点（人工神经元）互相连接组成。不同节点间的连接被赋予不同的权重，每个权重代表一个节点对另一个节点的影响大小。每个节点都代表一种特定的函数，由其他节点传来的信息经过相应权重进行计算，再输入到一个激活函数中得到一个新的节点值。</p>
 <p>1.5.3节神经网络的发展历史</p>
 <h2 id="16-本书的知识体系"><a class="markdownIt-Anchor" href="#16-本书的知识体系"></a> 1.6 本书的知识体系</h2>
-<p><img src="/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="图1.6本书的知识体系"></p>
+<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="图1.6本书的知识体系"></p>
 <ul>
 <li>
 <p><strong>机器学习</strong>：第2章机器学习的概述，第3章一些基本的线性模型，第9章无监督学习，第10章与模型无关的机器学习方法，第14章深度强化学习。</p>
@@ -503,7 +432,6 @@
 <p>A：学习算法（Learning Algorithm），算法执行的过程叫做学习（Learning）/训练（Training）</p>
 <p>Q：这样，我们通过学习算法得到了真实映射关系的函数，通过给定预测样本，可以得到预测值，那如何评价预测的值是否准确呢？</p>
 <p>A：计算预测值和真实值（标签）之间的比例，即准确率。$Acc(f*(x)) =  $</p>
-<span id="more"></span>
 
       
     </div>
@@ -513,7 +441,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://liujinqin.github.io/2021/11/13/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" title="【读书笔记】《神经网络与深度学习》邱锡鹏" target="_blank" rel="external">https://liujinqin.github.io/2021/11/13/【读书笔记】《神经网络与深度学习》邱锡鹏/</a>
+      <a href="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" title="【读书笔记】《神经网络与深度学习》邱锡鹏" target="_blank" rel="external">https://liujinqin.github.io/2021/11/14/【读书笔记】《神经网络与深度学习》邱锡鹏/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -532,7 +460,7 @@
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/LiuJinQin" target="_blank"><span class="text-dark">刘晋芹</span><small class="ml-1x">“进”取 &amp; “勤”奋</small></a></h3>
+        <h3 class="media-heading"><a href="https://github.com/LiuJinQin" target="_blank"><span class="text-dark">L&#39; Blog</span><small class="ml-1x"></small></a></h3>
         <div>在读研究生，2022年毕业。</div>
       </div>
     </figure>
@@ -559,13 +487,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/11/13/hexo%E7%9B%B8%E5%85%B3/" title="hexo相关"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/11/13/test-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/" title="test-上传图片"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2021/11/13/hexo%E4%BB%8B%E7%BB%8D%20&&%20pure%E4%B8%BB%E9%A2%98/" title="hexo介绍 &amp;&amp; pure主题"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
