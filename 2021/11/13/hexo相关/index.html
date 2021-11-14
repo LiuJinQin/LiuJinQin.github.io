@@ -18,15 +18,15 @@
   
   
   <title>hexo相关 | 刘晋芹的博客</title>
-  <meta name="description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。其官网是：https:&#x2F;&#x2F;hexo.io。 hexo项目目录 1234567. ├── _config.yml    # 网站的配置信息 ├── package.json   # 应用程序的信息 ├── public         # 公共文件夹，用于">
+  <meta name="description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。其官网是：https:&#x2F;&#x2F;hexo.io。  1 hexo项目目录 1234567. ├── _config.yml    # 网站的配置信息 ├── package.json   # 应用程序的信息 ├── public         # 公共文件夹">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo相关">
 <meta property="og:url" content="https://liujinqin.github.io/2021/11/13/hexo%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="刘晋芹的个人博客">
-<meta property="og:description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。其官网是：https:&#x2F;&#x2F;hexo.io。 hexo项目目录 1234567. ├── _config.yml    # 网站的配置信息 ├── package.json   # 应用程序的信息 ├── public         # 公共文件夹，用于">
+<meta property="og:description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。其官网是：https:&#x2F;&#x2F;hexo.io。  1 hexo项目目录 1234567. ├── _config.yml    # 网站的配置信息 ├── package.json   # 应用程序的信息 ├── public         # 公共文件夹">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-13T11:57:50.000Z">
-<meta property="article:modified_time" content="2021-11-13T17:14:46.611Z">
+<meta property="article:modified_time" content="2021-11-14T09:30:09.170Z">
 <meta property="article:author" content="liujinqin">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -45,7 +45,11 @@
   
   
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body class="main-center" itemscope itemtype="http://schema.org/WebPage">
@@ -355,34 +359,24 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。其官网是：<a target="_blank" rel="noopener" href="https://hexo.io/">https://hexo.io</a>。</p>
-<p><strong>hexo项目目录</strong></p>
+<h3 id="1-hexo项目目录"><a class="markdownIt-Anchor" href="#1-hexo项目目录"></a> 1 hexo项目目录</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">. </span><br><span class="line">├── _config.yml    <span class="comment"># 网站的配置信息 </span></span><br><span class="line">├── package.json   <span class="comment"># 应用程序的信息 </span></span><br><span class="line">├── public         <span class="comment"># 公共文件夹，用于存放生成的站点文件 </span></span><br><span class="line">├── scaffolds      <span class="comment"># 模版文件夹 </span></span><br><span class="line">├── source         <span class="comment"># 资源文件夹，用来存放内容 </span></span><br><span class="line">└── themes         <span class="comment"># 主题文件夹</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>hexo操作</strong></p>
+<h3 id="2-hexo操作"><a class="markdownIt-Anchor" href="#2-hexo操作"></a> 2 hexo操作</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">查看版本：hexo version 或者 hexo v</span><br><span class="line">启动服务：hexo server 或者 hexo s</span><br><span class="line">新建一篇文章，比如：hexo new &quot;Hello Hexo&quot;</span><br><span class="line">生成静态文件：hexo generate 或者 hexo g</span><br><span class="line">部署网站：hexo deploy 或者 hexo d</span><br><span class="line">清除缓存文件 (db.json) 和已生成的静态文件 (public)：hexo clean</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>hexo主题</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/cofess/hexo-theme-pure">pure</a></p>
-<hr>
+<h3 id="3-hexo主题"><a class="markdownIt-Anchor" href="#3-hexo主题"></a> 3 hexo主题</h3>
+<p>我使用的主题是<a target="_blank" rel="noopener" href="https://github.com/cofess/hexo-theme-pure">pure</a>，下面是pure主题的一些设置，根据作者readme.cn.md里的操作来。</p>
+<h4 id="31-安装插件"><a class="markdownIt-Anchor" href="#31-安装插件"></a> 3.1 安装插件</h4>
 <p>我之前安装的插件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">list</span></span><br><span class="line">hexo-site@<span class="number">0.0</span><span class="number">.0</span> E:\Github-LiuJinQin\博客</span><br><span class="line">+-- hexo-asset-image@<span class="number">0.0</span><span class="number">.3</span> (git+ssh://git@github.com/7ym0n/hexo-asset-image.git<span class="comment">#6c88c98214765112d148850a646ddca379fcdcfe)</span></span><br><span class="line">+-- hexo-deployer-git@<span class="number">3.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-generator-archive@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-generator-category@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-generator-index@<span class="number">2.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-generator-tag@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-render-pug@<span class="number">2.1</span><span class="number">.4</span></span><br><span class="line">+-- hexo-renderer-ejs@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-renderer-marked@<span class="number">4.1</span><span class="number">.0</span></span><br><span class="line">+-- hexo-renderer-stylus@<span class="number">2.0</span><span class="number">.1</span></span><br><span class="line">+-- hexo-server@<span class="number">2.0</span><span class="number">.0</span></span><br><span class="line">+-- hexo-theme-landscape@<span class="number">0.0</span><span class="number">.3</span></span><br><span class="line">`-- hexo@<span class="number">5.4</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
-
 <p>安装pure主题需要的插件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-wordcount --save</span><br><span class="line">npm install hexo-generator-json-content --save</span><br><span class="line">npm install hexo-generator-feed --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
-
 <p>安装之后的插件目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ npm list</span><br><span class="line">hexo-site@0.0.0 E:\Github-LiuJinQin\博客</span><br><span class="line">+-- hexo-asset-image@0.0.3 (git+ssh://git@github.com/7ym0n/hexo-asset-image.git#6c88c98214765112d148850a646ddca379fcdcfe)</span><br><span class="line">+-- hexo-deployer-git@3.0.0</span><br><span class="line">+-- hexo-generator-archive@1.0.0</span><br><span class="line">+-- hexo-generator-baidu-sitemap@0.1.9</span><br><span class="line">+-- hexo-generator-category@1.0.0</span><br><span class="line">+-- hexo-generator-feed@3.0.0</span><br><span class="line">+-- hexo-generator-index@2.0.0</span><br><span class="line">+-- hexo-generator-json-content@4.2.3</span><br><span class="line">+-- hexo-generator-sitemap@2.1.0</span><br><span class="line">+-- hexo-generator-tag@1.0.0</span><br><span class="line">+-- hexo-render-pug@2.1.4</span><br><span class="line">+-- hexo-renderer-ejs@1.0.0</span><br><span class="line">+-- hexo-renderer-marked@4.1.0</span><br><span class="line">+-- hexo-renderer-stylus@2.0.1</span><br><span class="line">+-- hexo-server@2.0.0</span><br><span class="line">+-- hexo-theme-landscape@0.0.3</span><br><span class="line">+-- hexo-wordcount@6.0.1</span><br><span class="line">`-- hexo@5.4.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
+<h4 id="32-理解修改配置文件"><a class="markdownIt-Anchor" href="#32-理解修改配置文件"></a> 3.2 理解修改配置文件</h4>
 <p><strong>menu 菜单导航</strong></p>
 <p>归档自带。把pure/_source里的分类categories、标签tags、项目repository、书单books、友链links、关于about复制到博客/source里。这样页面左边的菜单导航就可以全部使用了。</p>
 <p><strong>menu icons 导航菜单图标的设置和开关</strong></p>
-<p>**rss ** 不知道是什么</p>
+<p><strong>rss  应该是网页源代码</strong></p>
 <p><strong>site 站点设置</strong></p>
 <p>设置网站logo、网站名、站点公告</p>
 <p><strong>config 配置</strong></p>
@@ -400,7 +394,7 @@
 <p><strong>Comment 评论系统</strong></p>
 <p><strong>douban 豆瓣书单</strong></p>
 <p><strong>PV 文章浏览量统计</strong></p>
-<p><strong>wordcount 文章字数统计、阅读时长预计</strong> </p>
+<p><strong>wordcount 文章字数统计、阅读时长预计</strong></p>
 <p><strong>Plugins 插件？</strong></p>
 <p><strong>Miscellaneous？</strong></p>
 <p><strong>profile 左边最上方个人信息</strong></p>
@@ -410,6 +404,38 @@
 <p><strong>My Personal Labels 关于”页面侧边栏-标签云</strong></p>
 <p><strong>My Personal Works 关于”页面侧边栏-个人作品</strong></p>
 <p><strong>My Personal Projects 关于”页面侧边栏-个人项目</strong></p>
+<h4 id="33-数学公式"><a class="markdownIt-Anchor" href="#33-数学公式"></a> 3.3 数学公式</h4>
+<p>Q：Hexo默认使用&quot;hexo-renderer-marked&quot;引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签</p>
+<p>A：没有用作者的方法，因为按作者的方法，我会报错：Cannot find module ‘markdown-it-katex’，但明明hexo-renderer-markdown-it-plus插件就表示katex渲染器，而且安装的插件是想使用katex渲染器，最后却用mathjax: true，表示使用的是mathjax渲染器，我自己感觉作者这里是有点混乱的。于是我找了另一个方法：<a target="_blank" rel="noopener" href="https://wty-yy.github.io/posts/3849/index.html%EF%BC%8C%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B%EF%BC%9A">https://wty-yy.github.io/posts/3849/index.html，步骤如下：</a></p>
+<ol>
+<li>
+<p>卸载原有的渲染器：npm un hexo-renderer-marked --save。</p>
+</li>
+<li>
+<p>安装katex渲染器：npm i hexo-renderer-markdown-it-plus --save。</p>
+<p>注意网上很多教程都使用mathjax渲染器（npm install hexo-renderer-kramed --save），但mathjax也有一些问题，如把\ \转义成\，所以最终使用katex渲染器。此处npm list检查有没有安装hexo-renderer-kramed，如果有，也卸载（npm un hexo-renderer-kramed --save）</p>
+</li>
+<li>
+<p>安装hexo-math插件：npm install hexo-math --save。作者说是为了让字体变好看？应该不止，后面配置中也用到了，安装吧。</p>
+</li>
+<li>
+<p>在“站点配置文件”末尾添加代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">math:</span><br><span class="line">  engine: katex</span><br><span class="line">  katex:</span><br><span class="line">    css: https://cdn.jsdelivr.net/npm/katex@<span class="number">0.10</span><span class="number">.0</span>/dist/katex.<span class="built_in">min</span>.css</span><br><span class="line">    js: https://cdn.jsdelivr.net/npm/katex@<span class="number">0.10</span><span class="number">.0</span>/dist/katex.<span class="built_in">min</span>.js</span><br><span class="line">    config:</span><br><span class="line">      <span class="comment"># KaTeX config</span></span><br><span class="line">      throwOnError: false</span><br><span class="line">      errorColor: <span class="string">&quot;#cc0000&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>“主题配置文件”末尾添加代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">post:</span><br><span class="line">  math:</span><br><span class="line">    enable: true</span><br><span class="line">    specific: true</span><br><span class="line">    engine: katex</span><br></pre></td></tr></table></figure>
+<p>specific: true 表示只有在md文件里的<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">Front-matter</a>（开头）设置math: true时才会启用公式转换，这样以便在不包含公式的时候提高加载速度。</p>
+</li>
+<li>
+<p>在本篇文章中的<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">Front-matter</a>里加上一行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">math: true <span class="comment"># 注意冒号后面有空格</span></span><br></pre></td></tr></table></figure>
+<p>test：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>f</mi><mi>y</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_y^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.133108em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.4530000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>hexo clean &amp;&amp; hexo s 测试上面的公式是否正常显示</p>
+</li>
+</ol>
 <hr>
 
       
