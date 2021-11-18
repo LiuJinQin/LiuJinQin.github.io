@@ -17,27 +17,29 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>【读书笔记】《神经网络与深度学习》邱锡鹏 | L&#39;s blog</title>
+  <title>《神经网络与深度学习》邱锡鹏 | L&#39;s blog</title>
   <meta name="description" content="ch01 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进行新的预测。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【读书笔记】《神经网络与深度学习》邱锡鹏">
-<meta property="og:url" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
+<meta property="og:title" content="《神经网络与深度学习》邱锡鹏">
+<meta property="og:url" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
 <meta property="og:site_name" content="L&#39; Blog">
 <meta property="og:description" content="ch01 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进行新的预测。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE2.2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B.png">
 <meta property="article:published_time" content="2021-11-14T11:38:54.000Z">
-<meta property="article:modified_time" content="2021-11-14T09:59:24.711Z">
+<meta property="article:modified_time" content="2021-11-18T07:32:31.694Z">
 <meta property="article:author" content="liujinqin">
-<meta property="article:tag" content="神经网络与深度学习">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="DL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
+<meta name="twitter:image" content="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
+  <link rel="canonical" href="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
   
     <link rel="alternate" href="/atom.xml" title="L&#39; Blog" type="application/atom+xml">
   
@@ -68,7 +70,7 @@
         <a id="avatar" href="https://github.com/LiuJinQin" target="_blank">
           <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">L&#39; Blog</h2>
+        <h2 id="name" class="hidden-xs hidden-sm">L&#39;s Blog</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
         <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shandong, China</small>
       </div>
@@ -225,7 +227,7 @@
   <div class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9F%E6%9F%A5/">速查</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -235,7 +237,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 13px;">神经网络与深度学习</a>
+      <a href="/tags/DL/" style="font-size: 14px;">DL</a> <a href="/tags/ML/" style="font-size: 14px;">ML</a> <a href="/tags/PyTorch/" style="font-size: 13px;">PyTorch</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a>
     </div>
   </div>
 
@@ -245,16 +247,25 @@
 
   
   
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ch01-%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text"> ch01 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.1 人工智能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.2.</span> <span class="toc-text"> 1.2 机器学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.3.</span> <span class="toc-text"> 1.3 表示学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.4.</span> <span class="toc-text"> 1.4 深度学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.5.</span> <span class="toc-text"> 1.5 神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB"><span class="toc-number">1.6.</span> <span class="toc-text"> 1.6 本书的知识体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="toc-number">1.7.</span> <span class="toc-text"> 1.7 常用的深度学习框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E6%80%BB%E7%BB%93%E4%B8%8E%E6%B7%B1%E5%85%A5%E9%98%85%E8%AF%BB"><span class="toc-number">1.8.</span> <span class="toc-text"> 1.8 总结与深入阅读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ch02-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text"> ch02 机器学习概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text"> 2.1 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.2 机器学习的三个基本要素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">2.3.</span> <span class="toc-text"> 2.3 机器学习的简单示例——线性回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E5%81%8F%E5%B7%AE-%E6%96%B9%E5%B7%AE%E5%88%86%E8%A7%A3"><span class="toc-number">2.4.</span> <span class="toc-text"> 2.4 偏差-方差分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text"> 2.5 机器学习算法的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E6%95%B0%E6%8D%AE%E7%9A%84%E7%89%B9%E5%BE%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text"> 2.6 数据的特征表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-number">2.7.</span> <span class="toc-text"> 2.7 评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9A%E7%90%86"><span class="toc-number">2.8.</span> <span class="toc-text"> 2.8 理论和定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-%E6%80%BB%E7%BB%93%E5%92%8C%E6%B7%B1%E5%85%A5%E9%98%85%E8%AF%BB"><span class="toc-number">2.9.</span> <span class="toc-text"> 2.9 总结和深入阅读</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
 <main class="main" role="main">
   <div class="content">
-  <article id="post-【读书笔记】《神经网络与深度学习》邱锡鹏" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-《神经网络与深度学习》邱锡鹏" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      【读书笔记】《神经网络与深度学习》邱锡鹏
+      《神经网络与深度学习》邱锡鹏
     </h1>
   
 
@@ -262,7 +273,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" class="article-date">
+	<a href="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" class="article-date">
 	  <time datetime="2021-11-14T11:38:54.000Z" itemprop="datePublished">2021-11-14</time>
 	</a>
 </span>
@@ -275,19 +286,19 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">神经网络与深度学习</a>
+	<a class="article-tag-link-link" href="/tags/DL/" rel="tag">DL</a>, <a class="article-tag-link-link" href="/tags/ML/" rel="tag">ML</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2.8k(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 3.2k(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 10(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 11(分)</span>
 	
 
       </div>
@@ -302,7 +313,7 @@
 <li>学习：（监督学习、无监督学习、强化学习）</li>
 <li>认知：（知识表示、自然语言理解、推理、规划、决策）</li>
 </ul>
-<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="图1.1人工智能发展史"></p>
+<p><img src="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="图1.1人工智能发展史"></p>
 <h2 id="12-机器学习"><a class="markdownIt-Anchor" href="#12-机器学习"></a> 1.2 机器学习</h2>
 <p><strong>机器学习（Machine Learning，ML）</strong>：从数据中学习出一般规律，利用规律进行新的预测。</p>
 <p>实际任务中使用机器学习模型的几个步骤：</p>
@@ -312,7 +323,7 @@
 <li><strong>特征转换</strong>：对特征降维（特征抽取和特征选择）和升维。常用方法：主成分分析（Principal Components Analysis，PCA）、线性判别分析（Linear Discriminant Analysis，LDA）等</li>
 <li><strong>预测</strong>：学习一个函数并进行预测</li>
 </ol>
-<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.2传统机器学习的数据处理流程"></p>
+<p><img src="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.2传统机器学习的数据处理流程"></p>
 <p>很多机器学习问题往往变成了**特征工程（Feature Engineering）**问题</p>
 <h2 id="13-表示学习"><a class="markdownIt-Anchor" href="#13-表示学习"></a> 1.3 表示学习</h2>
 <p>机器学习中<strong>表示特征的两种方式</strong>：</p>
@@ -321,20 +332,20 @@
 <li>分布式表示：低维稠密向量 。</li>
 </ul>
 <p><strong>嵌入（Embedding）</strong>：我们使用神经网络将高维的局部表示空间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="double-struck">R</mi><mrow><mi mathvariant="normal">∣</mi><mi>D</mi><mi mathvariant="normal">∣</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\R^{|D|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mtight">∣</span></span></span></span></span></span></span></span></span></span></span></span> 映射到一个非常低维的分布式表示空间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mi>D</mi></msup></mrow><annotation encoding="application/x-tex">R^D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mo>≪</mo><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">D\ll|V|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≪</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord">∣</span></span></span></span>。机器学习中此过程称为嵌入。自然语言中词的分布式表示，经常叫做词嵌入。</p>
-<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png" alt="图1.3one-hot向量空间与嵌入空间"></p>
+<p><img src="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png" alt="图1.3one-hot向量空间与嵌入空间"></p>
 <p><strong>表示学习（Representation Learning）</strong>：可以自动学习有效特征，提高机器学习模型性能的学习方法。</p>
 <p>表示学习的关键：构建一定深度的多层次特征表示。因为要学习到一个好的高层语义表示（一般为分布式表示），通常要从底层特征开始经过多次非线性转换才能得到，因此选择深层结构。深层结构可以增加特征的重用性，从而指数级地增加表示能力。</p>
 <p>传统机器学习的特征学习方法：主成分分析、线性判别分析、独立成分分析。</p>
 <h2 id="14-深度学习"><a class="markdownIt-Anchor" href="#14-深度学习"></a> 1.4 深度学习</h2>
 <p><strong>深度学习（Deep Learning，DL）</strong>：从数据中学出一个深度模型。从数据中自动学习有效的特征表示。</p>
 <p>深度学习早期主要用来进行表示学习，后来越多越多地用于处理更复杂的推理、决策问题。</p>
-<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.4深度学习的数据处理流程"></p>
+<p><img src="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.4深度学习的数据处理流程"></p>
 <p>深度学习所采用的的模型是<strong>神经网络模型</strong>（当然还有其他的模型），主要原因是神经网络模型可以使用误差反向传播算法，可以比较好地解决贡献度分配问题（Credit Assignment Problem，CAP）——一个系统中不同的组件或其参数对最终系统输出结果的贡献或影响。</p>
 <h2 id="15-神经网络"><a class="markdownIt-Anchor" href="#15-神经网络"></a> 1.5 神经网络</h2>
 <p><strong>神经网络</strong>，是人工神经网络的简称，即一种模仿人脑神经网络的数学模型，由节点（人工神经元）互相连接组成。不同节点间的连接被赋予不同的权重，每个权重代表一个节点对另一个节点的影响大小。每个节点都代表一种特定的函数，由其他节点传来的信息经过相应权重进行计算，再输入到一个激活函数中得到一个新的节点值。</p>
 <p>1.5.3节神经网络的发展历史</p>
 <h2 id="16-本书的知识体系"><a class="markdownIt-Anchor" href="#16-本书的知识体系"></a> 1.6 本书的知识体系</h2>
-<p><img src="/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="图1.6本书的知识体系"></p>
+<p><img src="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="图1.6本书的知识体系"></p>
 <ul>
 <li>
 <p><strong>机器学习</strong>：第2章机器学习的概述，第3章一些基本的线性模型，第9章无监督学习，第10章与模型无关的机器学习方法，第14章深度强化学习。</p>
@@ -427,11 +438,40 @@
 </li>
 </ul>
 <p>Q：我们想用机器学习干嘛？</p>
-<p>A：预测/推断。给一个样本（特征向量），能预测出我想预测的东西（标签）。我们希望找到特征向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 和标签 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 之间的真实映射关系，这种关系我们想用函数来表示，但没有哪种函数能完全符合现实情况，只能找到一个相对最优函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 来近似表达这种映射关系。如果找到此函数，那给定一个样本 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> ，就可以预测其标签值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>=</mo><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat y = f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> （连续），或者标签的条件概率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>p</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>f</mi><mi>y</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat p(y|x) = f_y^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">p</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.133108em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.4530000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>（离散）。</p>
+<p>A：预测/推断。给一个样本（特征向量），能预测出我想预测的东西（标签）。我们希望找到特征向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 和标签 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 之间的真实映射关系，这种关系我们想用函数来表示，但没有哪种函数能完全符合现实情况，只能找到一个相对最优函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 来近似表达这种映射关系。如果找到此函数，那给定一个样本 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> ，就可以预测其标签值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>=</mo><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat y = f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> （连续），或者标签的条件概率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>p</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>f</mi><mi>y</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat p(y|x) = f_y^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">p</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.133108em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.4530000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>（离散）。这里的函数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 要从一个函数集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">F</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>f</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><msub><mi>f</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{F} = \{f_1(x), f_2(x), ...\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">}</span></span></span></span> 中找，至于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span></span></span></span></span> 是什么，就把它就想象成所有可能的函数组成的一个大集合吧。</p>
 <p>Q：如何找到这个函数？（这就是机器学习的关键！）</p>
-<p>A：学习算法（Learning Algorithm），算法执行的过程叫做学习（Learning）/训练（Training）</p>
+<p>A：学习算法（Learning Algorithm）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">A</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">A</span></span></span></span></span>，算法执行的过程叫做学习（Learning）/训练（Training）</p>
 <p>Q：这样，我们通过学习算法得到了真实映射关系的函数，通过给定预测样本，可以得到预测值，那如何评价预测的值是否准确呢？</p>
-<p>A：计算预测值和真实值（标签）之间的比例，即准确率。$Acc(f*(x)) =  $</p>
+<p>A：计算预测值和真实值（标签）之间的比例，即准确率。$Acc(f*(x)) = \frac{1}{|D^{’}|}\sum\limits_{(x,y)\in D<sup>{’}}I(f</sup>*(x)=y) $ ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>为指示函数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 相等时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>值为1，不相等时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>值为0。</p>
+<p><strong>机器学习的基本流程</strong></p>
+<p><img src="/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE2.2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B.png" alt="图2.2机器学习系统示例"></p>
+<h2 id="22-机器学习的三个基本要素"><a class="markdownIt-Anchor" href="#22-机器学习的三个基本要素"></a> 2.2 机器学习的三个基本要素</h2>
+<p>模型、学习准则、优化算法</p>
+<p>相同的模型也可以有不同的学习算法．比如线性分类模型有感知器、Logistic 回归和支持向量机，它们之间的差异在于使用了不同的学习准则和优化算法．</p>
+<h2 id="23-机器学习的简单示例线性回归"><a class="markdownIt-Anchor" href="#23-机器学习的简单示例线性回归"></a> 2.3 机器学习的简单示例——线性回归</h2>
+<h2 id="24-偏差-方差分解"><a class="markdownIt-Anchor" href="#24-偏差-方差分解"></a> 2.4 偏差-方差分解</h2>
+<h2 id="25-机器学习算法的类型"><a class="markdownIt-Anchor" href="#25-机器学习算法的类型"></a> 2.5 机器学习算法的类型</h2>
+<h2 id="26-数据的特征表示"><a class="markdownIt-Anchor" href="#26-数据的特征表示"></a> 2.6 数据的特征表示</h2>
+<h2 id="27-评价指标"><a class="markdownIt-Anchor" href="#27-评价指标"></a> 2.7 评价指标</h2>
+<h2 id="28-理论和定理"><a class="markdownIt-Anchor" href="#28-理论和定理"></a> 2.8 理论和定理</h2>
+<h2 id="29-总结和深入阅读"><a class="markdownIt-Anchor" href="#29-总结和深入阅读"></a> 2.9 总结和深入阅读</h2>
+<p>如果需要快速全面地了解机器学习的基本概念和体系，可以阅读</p>
+<ul>
+<li>
+<p>《Pattern Classification》[Duda et al., 2001]</p>
+</li>
+<li>
+<p>《Machine Learning: a Probabilistic Perspective》[Murphy, 2012]</p>
+</li>
+<li>
+<p>《机器学习》[周志华, 2016]</p>
+</li>
+<li>
+<p>《统计学习方法》[李航, 2019]</p>
+</li>
+</ul>
+<p>统计学习知识 略</p>
+<p>表示学习 略</p>
 
       
     </div>
@@ -441,7 +481,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://liujinqin.github.io/2021/11/14/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" title="【读书笔记】《神经网络与深度学习》邱锡鹏" target="_blank" rel="external">https://liujinqin.github.io/2021/11/14/【读书笔记】《神经网络与深度学习》邱锡鹏/</a>
+      <a href="https://liujinqin.github.io/2021/11/14/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" title="《神经网络与深度学习》邱锡鹏" target="_blank" rel="external">https://liujinqin.github.io/2021/11/14/《神经网络与深度学习》邱锡鹏/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -460,8 +500,8 @@
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/LiuJinQin" target="_blank"><span class="text-dark">L&#39; Blog</span><small class="ml-1x"></small></a></h3>
-        <div>在读研究生，2022年毕业。</div>
+        <h3 class="media-heading"><a href="https://github.com/LiuJinQin" target="_blank"><span class="text-dark">L&#39;s Blog</span><small class="ml-1x"></small></a></h3>
+        <div></div>
       </div>
     </figure>
   </div>
@@ -487,11 +527,24 @@
   
   <ul class="pager pull-left">
     
-    
-    <li class="next">
-      <a href="/2021/11/13/hexo%E4%BB%8B%E7%BB%8D%20&&%20pure%E4%B8%BB%E9%A2%98/" title="hexo介绍 &amp;&amp; pure主题"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    <li class="prev">
+      <a href="/2021/11/18/%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title="常用函数"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
+    
+    <li class="next">
+      <a href="/2021/11/13/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="hexo搭建博客"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
     
   </ul>
   
