@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>《神经网络与深度学习》邱锡鹏 | L&#39;s blog</title>
+  <meta name="description" content="1 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进行新的预测。 实际">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《神经网络与深度学习》邱锡鹏">
+<meta property="og:url" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
+<meta property="og:site_name" content="L&#39; Blog">
+<meta property="og:description" content="1 绪论  1.1 人工智能 人工智能（Artificial Intelligence，AI）：让机器拥有人的智能（感知、学习、认知）。  感知：（计算机视觉、语音信息处理） 学习：（监督学习、无监督学习、强化学习） 认知：（知识表示、自然语言理解、推理、规划、决策）    1.2 机器学习 机器学习（Machine Learning，ML）：从数据中学习出一般规律，利用规律进行新的预测。 实际">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE2.2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126213547931.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126215056079.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126215124835.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126215302483.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126212553229.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126212806613.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211129150459097.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211129150838302.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211130112717287.png">
+<meta property="og:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211130160935048.png">
+<meta property="article:published_time" content="2021-11-13T11:38:54.913Z">
+<meta property="article:modified_time" content="2021-12-03T04:29:06.641Z">
+<meta property="article:author" content="liujinqin">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="DL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="L&#39; Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/LiuJinQin" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">L&#39;s Blog</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md"></h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shandong, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LiuJinQin" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.zhihu.com/people/liu-jin-qin-88/posts" target="_blank" title="Zhihu" data-toggle=tooltip data-placement=top><i class="icon icon-zhihu"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>你好，这里是小刘的博客~</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%A8%A1%E5%9E%8B%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0/">模型从零实现</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%9F%E6%9F%A5/">速查</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/DL/" style="font-size: 14px;">DL</a> <a href="/tags/ML/" style="font-size: 14px;">ML</a> <a href="/tags/PyTorch/" style="font-size: 13.5px;">PyTorch</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a>
+    </div>
+  </div>
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text"> 1 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text"> 1.1 人工智能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.2.</span> <span class="toc-text"> 1.2 机器学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.3.</span> <span class="toc-text"> 1.3 表示学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.4.</span> <span class="toc-text"> 1.4 深度学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.5.</span> <span class="toc-text"> 1.5 神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB"><span class="toc-number">1.6.</span> <span class="toc-text"> 1.6 本书的知识体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="toc-number">1.7.</span> <span class="toc-text"> 1.7 常用的深度学习框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E6%80%BB%E7%BB%93%E4%B8%8E%E6%B7%B1%E5%85%A5%E9%98%85%E8%AF%BB"><span class="toc-number">1.8.</span> <span class="toc-text"> 1.8 总结与深入阅读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text"> 2 机器学习概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text"> 2.1 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 2.2 机器学习的三个基本要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#221-%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 2.2.1 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#222-%E5%AD%A6%E4%B9%A0%E5%87%86%E5%88%99"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 2.2.2 学习准则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#223-%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 2.2.3 优化算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">2.3.</span> <span class="toc-text"> 2.3 机器学习的简单示例——线性回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E5%81%8F%E5%B7%AE-%E6%96%B9%E5%B7%AE%E5%88%86%E8%A7%A3"><span class="toc-number">2.4.</span> <span class="toc-text"> 2.4 偏差-方差分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text"> 2.5 机器学习算法的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E6%95%B0%E6%8D%AE%E7%9A%84%E7%89%B9%E5%BE%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text"> 2.6 数据的特征表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-number">2.7.</span> <span class="toc-text"> 2.7 评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E7%90%86%E8%AE%BA%E5%92%8C%E5%AE%9A%E7%90%86"><span class="toc-number">2.8.</span> <span class="toc-text"> 2.8 理论和定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-%E6%80%BB%E7%BB%93%E5%92%8C%E6%B7%B1%E5%85%A5%E9%98%85%E8%AF%BB"><span class="toc-number">2.9.</span> <span class="toc-text"> 2.9 总结和深入阅读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text"> 3 线性模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#31-%E7%BA%BF%E6%80%A7%E5%88%A4%E5%88%AB%E5%87%BD%E6%95%B0%E5%92%8C%E5%86%B3%E7%AD%96%E8%BE%B9%E7%95%8C"><span class="toc-number">3.1.</span> <span class="toc-text"> 3.1 线性判别函数和决策边界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#311-%E4%BA%8C%E5%88%86%E7%B1%BB"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 3.1.1 二分类</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-《神经网络与深度学习》邱锡鹏" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《神经网络与深度学习》邱锡鹏
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" class="article-date">
+	  <time datetime="2021-11-13T11:38:54.913Z" itemprop="datePublished">2021-11-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/DL/" rel="tag">DL</a>, <a class="article-tag-link-link" href="/tags/ML/" rel="tag">ML</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 8k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 29(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="1-绪论"><a class="markdownIt-Anchor" href="#1-绪论"></a> 1 绪论</h1>
+<h2 id="11-人工智能"><a class="markdownIt-Anchor" href="#11-人工智能"></a> 1.1 人工智能</h2>
+<p><strong>人工智能（Artificial Intelligence，AI）</strong>：让机器拥有人的智能（感知、学习、认知）。</p>
+<ul>
+<li>感知：（计算机视觉、语音信息处理）</li>
+<li>学习：（监督学习、无监督学习、强化学习）</li>
+<li>认知：（知识表示、自然语言理解、推理、规划、决策）</li>
+</ul>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt="图1.1人工智能发展史"></p>
+<h2 id="12-机器学习"><a class="markdownIt-Anchor" href="#12-机器学习"></a> 1.2 机器学习</h2>
+<p><strong>机器学习（Machine Learning，ML）</strong>：从数据中学习出一般规律，利用规律进行新的预测。</p>
+<p>实际任务中使用机器学习模型的几个步骤：</p>
+<ol>
+<li><strong>数据预处理</strong>：去掉一些缺失特征的样本、去掉一些冗余的数据特征、对数值特征进行缩放和归一化</li>
+<li><strong>特征提取</strong>：提取高质量特征。如文本分类中去除停用词</li>
+<li><strong>特征转换</strong>：对特征降维（特征抽取和特征选择）和升维。常用方法：主成分分析（Principal Components Analysis，PCA）、线性判别分析（Linear Discriminant Analysis，LDA）等</li>
+<li><strong>预测</strong>：学习一个函数并进行预测</li>
+</ol>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.2%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.2传统机器学习的数据处理流程"></p>
+<p>很多机器学习问题往往变成了**特征工程（Feature Engineering）**问题</p>
+<h2 id="13-表示学习"><a class="markdownIt-Anchor" href="#13-表示学习"></a> 1.3 表示学习</h2>
+<p>机器学习中<strong>表示特征的两种方式</strong>：</p>
+<ul>
+<li>局部表示 / 离散表示 / 符号表示：one-hot向量形式</li>
+<li>分布式表示：低维稠密向量 。</li>
+</ul>
+<p><strong>嵌入（Embedding）</strong>：我们使用神经网络将高维的局部表示空间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="double-struck">R</mi><mrow><mi mathvariant="normal">∣</mi><mi>D</mi><mi mathvariant="normal">∣</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\R^{|D|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mtight">∣</span></span></span></span></span></span></span></span></span></span></span></span> 映射到一个非常低维的分布式表示空间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mi>D</mi></msup></mrow><annotation encoding="application/x-tex">R^D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mo>≪</mo><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">D\ll|V|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≪</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord">∣</span></span></span></span>。机器学习中此过程称为嵌入。自然语言中词的分布式表示，经常叫做词嵌入。</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.3one-hot%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4.png" alt="图1.3one-hot向量空间与嵌入空间"></p>
+<p><strong>表示学习（Representation Learning）</strong>：可以自动学习有效特征，提高机器学习模型性能的学习方法。</p>
+<p>表示学习的关键：构建一定深度的多层次特征表示。因为要学习到一个好的高层语义表示（一般为分布式表示），通常要从底层特征开始经过多次非线性转换才能得到，因此选择深层结构。深层结构可以增加特征的重用性，从而指数级地增加表示能力。</p>
+<p>传统机器学习的特征学习方法：主成分分析、线性判别分析、独立成分分析。</p>
+<h2 id="14-深度学习"><a class="markdownIt-Anchor" href="#14-深度学习"></a> 1.4 深度学习</h2>
+<p><strong>深度学习（Deep Learning，DL）</strong>：从数据中学出一个深度模型。从数据中自动学习有效的特征表示。</p>
+<p>深度学习早期主要用来进行表示学习，后来越多越多地用于处理更复杂的推理、决策问题。</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.4%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="图1.4深度学习的数据处理流程"></p>
+<p>深度学习所采用的的模型是<strong>神经网络模型</strong>（当然还有其他的模型），主要原因是神经网络模型可以使用误差反向传播算法，可以比较好地解决贡献度分配问题（Credit Assignment Problem，CAP）——一个系统中不同的组件或其参数对最终系统输出结果的贡献或影响。</p>
+<h2 id="15-神经网络"><a class="markdownIt-Anchor" href="#15-神经网络"></a> 1.5 神经网络</h2>
+<p><strong>神经网络</strong>，是人工神经网络的简称，即一种模仿人脑神经网络的数学模型，由节点（人工神经元）互相连接组成。不同节点间的连接被赋予不同的权重，每个权重代表一个节点对另一个节点的影响大小。每个节点都代表一种特定的函数，由其他节点传来的信息经过相应权重进行计算，再输入到一个激活函数中得到一个新的节点值。</p>
+<p>1.5.3节神经网络的发展历史</p>
+<h2 id="16-本书的知识体系"><a class="markdownIt-Anchor" href="#16-本书的知识体系"></a> 1.6 本书的知识体系</h2>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE1.6%E6%9C%AC%E4%B9%A6%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="图1.6本书的知识体系"></p>
+<ul>
+<li>
+<p><strong>机器学习</strong>：第2章机器学习的概述，第3章一些基本的线性模型，第9章无监督学习，第10章与模型无关的机器学习方法，第14章深度强化学习。</p>
+</li>
+<li>
+<p><strong>神经网络</strong>：第4章前馈神经网络，第5章卷积神经网络，第6章循环神经网络，第7章神经网络的优化和正则化，第8章神经网络的注意力机制和外部记忆。</p>
+</li>
+<li>
+<p><strong>概率图模型</strong>：第11章基本概念，第12章两种概率图模型：玻尔兹曼机和深度信念网络，两种概率生成模型13章15章：第13章深度生成模型，第15章序列生成模型。</p>
+</li>
+<li>
+<p><strong>附录</strong>：深度学习涉及的数学知识：线性代数、微积分、数学优化、概率论和信息论等。</p>
+</li>
+</ul>
+<h2 id="17-常用的深度学习框架"><a class="markdownIt-Anchor" href="#17-常用的深度学习框架"></a> 1.7 常用的深度学习框架</h2>
+<p>为什么需要框架：深度学习中，一般用误差反向传播算法进行参数学习，手工求梯度再写代码的方式非常低效。此外，深度学习模型的计算资源很多，需要在CPU和GPU之间无缝切换。因此，我们需要一种可以自动求梯度，且可以无缝在CPU和GPU之间切换的功能，于是产生了支持这些功能的深度学习框架。代表性框架：Theano、Caffe、TensorFlow、 PyTorch、飞桨（PaddlePaddle）、Chainer和MXNet等。</p>
+<ul>
+<li>Theano：蒙特利尔大学。停止维护</li>
+<li>Caffe：加州伯克利分校。针对卷积神经网络的计算框架，主要用于计算机视觉。（Caffe2已并入PyTorch）</li>
+<li>TensorFlow：Google 。</li>
+<li>PyTorch：Facebook、NVIDIA、Twitter。</li>
+<li>飞桨（PaddlePaddle）：百度。</li>
+<li>MindSpore：华为。用于端边云场景</li>
+<li>Chainer：日本Preferred Networks。非常适合进行一些复杂的决策或推理任务。</li>
+<li>MXNet：亚马逊、华盛顿大学和卡内基·梅隆大学。MXNet支持混合使用符号和命令式编程。</li>
+</ul>
+<p>模块化神经网络框架：建立在基础框架之上的高度模块化的神经网络库。</p>
+<ul>
+<li>基于TensorFlow和Theano的Keras（Keras已经被集成到TensorFlow 2.0版本中）</li>
+<li>基于Theano的Lasagne</li>
+<li>面向图结构数据的DGL</li>
+</ul>
+<h2 id="18-总结与深入阅读"><a class="markdownIt-Anchor" href="#18-总结与深入阅读"></a> 1.8 总结与深入阅读</h2>
+<p>传统机器学习中，开发一个实际的机器学习系统，除了模型和算法，人们往往花费大量的精力去做特征工程。如何自动学习有效的数据表示成为了机器学习中的关键问题。早期的表示学习方法，如特征抽取和特征选择，都是人工引入特征进行学习，这种表示学习并不是端到端的学习，且效果不能保证有效。为了解决这一问题，提出了深度学习。</p>
+<p>深度学习里要解决的问题是贡献度分配问题，为了解决这一问题，发现神经网络模型恰好有效。</p>
+<p>目前，深度学习主要以神经网络模型为基础，研究如何设计模型结构，如何有效地学习模型的参数，如何优化模型性能以及在不同任务上的应用等。</p>
+<p>和深度学习相关的学术会议</p>
+<ul>
+<li>国际表示学习会议（International Conference on Learning Representations，ICLR）：主要聚焦于深度学习。</li>
+<li>神经信息处理系统年会（Annual Conference on Neural Information Processing Systems，NeurIPS）：交叉学科会议，但偏重于机器学习。主要包括神经信息处理、统计方法、学习理论以及应用等。</li>
+<li>国际机器学习会议（International Conference on Machine Learning，ICML）：机器学习顶级会议，深度学习作为近年来的热点，也占据了ICML的很大比例。</li>
+<li>国际人工智能联合会议（International Joint Conference on Artificial Intelligence，IJCAI）：人工智能领域最顶尖的综合性会议．历史悠久，从1969年开始举办。</li>
+<li>美国人工智能协会年会（AAAIConferenceonArtificialIntelligence，AAAI）：人工智能领域的顶级会议，每年二月份左右召开，地点一般在北美。</li>
+</ul>
+<p>子领域专业学术会议</p>
+<ul>
+<li>计算机视觉
+<ul>
+<li>计算机视觉与模式识别大会（IEEE Conference on Computer Vision and Pattern Recognition，CVPR）</li>
+<li>国际计算机视觉会议（International Comference on Computer Vision，ICCV）</li>
+</ul>
+</li>
+<li>自然语言处理
+<ul>
+<li>计算语言学年会（Annual Meeting of the Association for Computational Linguistics，ACL）</li>
+<li>自然语言处理实证方法大会（Conference on Empirical Methods in NaturalLanguage Processing，EMNLP</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">机器学习的特征学习。参见第2.6.1节。</span><br><span class="line">自 动 梯 度 计 算 参 见 第4.5节</span><br><span class="line">自 动 微 分 参 见 第4.5.3节．</span><br><span class="line">Hebbian 法则参见第8.6.1节</span><br><span class="line">Hopfield 网络参见 第8.6.1节</span><br><span class="line">主成分分析：9.1.1 </span><br><span class="line">玻 尔 兹 曼 机 参 见第12.1节．</span><br><span class="line">深 度 信 念 网 络 参 见 第12.3节．</span><br><span class="line">强化学习14章</span><br></pre></td></tr></table></figure>
+<h1 id="2-机器学习概述"><a class="markdownIt-Anchor" href="#2-机器学习概述"></a> 2 机器学习概述</h1>
+<p>ch01的1.2节总结了一些机器学习的知识。</p>
+<p>机器学习研究的是如何从数据中训练和给定新的数据如何预测的问题。</p>
+<p>机器学习早期叫模式识别（Pattern Recognition， PR），做一些识别的任务，后来机器学习的应用面广了，模式识别只是其中的一种应用，于是这一类问题及其解决办法就改叫机器学习了。</p>
+<h2 id="21-基本概念"><a class="markdownIt-Anchor" href="#21-基本概念"></a> 2.1 基本概念</h2>
+<ul>
+<li>特征/属性（Feature/Attribute）：一个项目（item）的属性</li>
+<li>标签（Label）：对一个项目的评价，如好or坏、良性or恶性（离散值），评分、程度（连续值）。</li>
+<li>样本/示例（Sample/Instance）：一个标记好特征以及标签的项目</li>
+<li>数据集（Data Set）：一组样本的集合。数据集一般分为训练集和测试集两部分。</li>
+<li>训练集（Training Set）：一组用来训练模型的样本（即训练样本（Training Sample））</li>
+<li>测试集（Test Set）：一组用来检验模型好坏的样本（即测试样本（Test Sample））</li>
+<li>表示
+<ul>
+<li>特征向量（Feature Vector）：一个项目的所有特征所构成的D维向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>=</mo><mo stretchy="false">[</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>x</mi><mi>D</mi></msub><msup><mo stretchy="false">]</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">x = [x_1, x_2, ..., x_D]^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span> ，其中D是一个项目的特征数，每一维 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示一个特征。</li>
+<li>标签：常用标量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 表示。</li>
+<li>训练集：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo separator="true">,</mo><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo separator="true">,</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></msup><mo separator="true">,</mo><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></msup><mo separator="true">,</mo><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">D = \{(x^{(1)},y^{(1)}), x^{(2)},y^{(2)}),...,x^{(N)},y^{(N)})\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">2</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">2</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">}</span></span></span></span></li>
+<li>训练集样本数：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>，每个样本都是<strong>独立同分布的（Identically and Independently Distributed, IID）</strong></li>
+<li>测试集：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>D</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">D&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>，每个样本也是独立同分布的</li>
+</ul>
+</li>
+</ul>
+<p><strong>Q：我们想用机器学习干嘛？</strong></p>
+<p>A：预测/推断。给一个样本（特征向量），能预测出我想预测的东西（标签）。我们希望找到特征向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 和标签 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 之间的真实映射关系，这种关系我们想用函数来表示，但没有哪种函数能完全符合现实情况，只能找到一个相对最优函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 来近似表达这种映射关系。如果找到此函数，那给定一个样本 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> ，就可以预测其标签值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>=</mo><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat y = f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> （连续），或者标签的条件概率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>p</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>f</mi><mi>y</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat p(y|x) = f_y^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">p</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.133108em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.4530000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>（离散）。这里的函数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 要从一个函数集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">F</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>f</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><msub><mi>f</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{F} = \{f_1(x), f_2(x), ...\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">}</span></span></span></span> 中找，至于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span></span></span></span></span> 是什么，就把它就想象成所有可能的函数组成的一个大集合吧。</p>
+<p><strong>Q：如何找到这个函数？（这就是机器学习的关键！）</strong></p>
+<p>A：学习算法（Learning Algorithm）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">A</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">A</span></span></span></span></span>，算法执行的过程叫做学习（Learning）/训练（Training）</p>
+<p>这样，我们通过学习算法得到了真实映射关系的函数，通过给定预测样本，可以得到预测值。</p>
+<p><strong>Q：那如何评价预测的值是否准确呢？</strong></p>
+<p>A：计算预测值和真实值（标签）之间的比例，即准确率。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>c</mi><mi>c</mi><mo stretchy="false">(</mo><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mi mathvariant="normal">∣</mi><msup><mi>D</mi><msup><mrow></mrow><mo mathvariant="normal">′</mo></msup></msup><mi mathvariant="normal">∣</mi></mrow></mfrac><munder><mo>∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>∈</mo><msup><mi>D</mi><msup><mrow></mrow><mo mathvariant="normal">′</mo></msup></msup></mrow></munder><mi>I</mi><mo stretchy="false">(</mo><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Acc(f^*(x)) = \frac{1}{|D^{&#x27;}|}\sum\limits_{(x,y)\in D^{&#x27;}}I(f^*(x)=y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.161093em;vertical-align:-1.315985em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.5650199999999996em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8928285714285715em;"><span style="top:-2.8928285714285713em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.6068285714285713em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8495600000000001em;"><span style="top:-2.84956em;margin-right:0.1em;"><span class="pstrut" style="height:2.55556em;"></span><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mord mtight">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.60998em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7500050000000001em;"><span style="top:-1.9590150000000002em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">x</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="mclose mtight">)</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8928285714285715em;"><span style="top:-2.8928285714285713em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.6068285714285713em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8495600000000001em;"><span style="top:-2.84956em;margin-right:0.1em;"><span class="pstrut" style="height:2.55556em;"></span><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.0000050000000003em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.315985em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>为指示函数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^*(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 相等时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>值为1，不相等时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span>值为0。</p>
+<p><strong>机器学习的基本流程</strong></p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/%E5%9B%BE2.2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%A4%BA%E4%BE%8B.png" alt="图2.2机器学习系统示例"></p>
+<h2 id="22-机器学习的三个基本要素"><a class="markdownIt-Anchor" href="#22-机器学习的三个基本要素"></a> 2.2 机器学习的三个基本要素</h2>
+<p>模型、学习准则、优化算法。</p>
+<h3 id="221-模型"><a class="markdownIt-Anchor" href="#221-模型"></a> 2.2.1 模型</h3>
+<p><em>（从这里开始大量复制书里的符号而不自己写latex公式，待改）</em></p>
+<p><strong>Q：我们想做一个机器学习任务，首先要看什么？</strong></p>
+<p>A：输入空间 𝒳 和输出空间 𝒴 。有了手头上的输入（输入空间默认为样本的特征空间），你想要什么样的输出？什么样的输出决定了我们要做什么样的机器学习任务，可以说输出空间和学习任务类型是相对应的。比如在二分类问题中 𝒴 = {+1,−1}，在 𝐶 分类问题中 𝒴 = {1,2,⋯,𝐶}，而在回归问题中 𝒴 = ℝ 。</p>
+<p><strong>Q：确定了𝒴之后，就要想怎样从𝒳得到（映射到）𝒴，即映射关系是什么？</strong></p>
+<p>A：如2.1节所述，从假设空间 ℱ（Hypothesis Space）里选一个最佳的假设（Hypothesis）𝑓∗ ∈ ℱ，这里的𝑓∗就是<strong>模型（Model）</strong>，就是我们要找的映射关系。</p>
+<p><strong>Q：模型的公式化表示？</strong></p>
+<p>A：假设空间ℱ 通常为一个参数化的函数族 ℱ = {𝑓(𝒙;𝜃)|𝜃 ∈ ℝ𝐷}，其中𝑓(𝒙;𝜃)是参数为𝜃的函数，也称为模型（Model），𝐷为参数的数量。</p>
+<p>因为常见的假设空间分为线性和非线性两种，所以模型也就分为线性模型和非线性模型。</p>
+<ul>
+<li>
+<p><strong>线性模型</strong>：线性模型的假设空间为一个参数化的线性函数族，即 𝑓(𝒙;𝜃) = 𝒘T 𝒙 + 𝑏，其中参数𝜃包含了权重向量𝒘和偏置𝑏。对于分类问题，一般为广义线性函数𝑦 = 𝑔(𝑓(𝒙; 𝒘))（第3章会讲）</p>
+</li>
+<li>
+<p><strong>非线性模型</strong>：广义的非线性模型可以写为多个非线性基函数𝜙(𝒙)的线性组合𝑓(𝒙;𝜃) = 𝒘T 𝜙(𝒙) + 𝑏，其中𝜙(𝒙) = [𝜙1(𝒙),𝜙2(𝒙),⋯,𝜙𝐾(𝒙)]T 为𝐾 个非线性基函数组成的向量，参数𝜃包含了权重向量𝒘和偏置𝑏。如果𝜙(𝒙)本身为可学习的基函数，那𝑓(𝒙;𝜃)就等价于神经网络模型。相当于多层的（线性模型外加非线性函数）。</p>
+</li>
+</ul>
+<p>现在有输入空间和输出空间，根据想要的输出空间选定一种模型，接下来也就是让模型拟合训练集上的数据（学习），拟合好了模型学到功能了就可以使用了就可以预测新样本了。那模型如何学习？又怎样判断模型学习好了？这就是接下来要探讨的机器学习的三个基本要素之一——学习准则的问题。</p>
+<p>相同的模型也可以有不同的学习算法。比如线性分类模型有感知器、Logistic 回归和支持向量机，它们之间的差异在于使用了不同的学习准则和优化算法。</p>
+<h3 id="222-学习准则"><a class="markdownIt-Anchor" href="#222-学习准则"></a> 2.2.2 学习准则</h3>
+<p>回顾一下，2.1节提到过训练集 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span></span> 中的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 个样本都是IID呈独立同分布的，这是个假设，基于这个假设，我们想象所有训练集的样本都是从一个真实分布中抽样得到的，这个真实分布就是真实映射函数𝑦 = 𝑔(𝒙)或是真实条件概率分布𝑝𝑟(𝑦|𝒙)。而这种真实很难找到，我们只能找到近似的假设函数，也就是模型𝑓(𝒙;𝜃)。</p>
+<p>既然假设式和真实式都有了，那自然想到衡量模型的好坏就是衡量模型与真实式有多相似，更具体点说是一个好的模型𝑓(𝒙,𝜃∗) 应该在所有(𝒙,𝑦) 的可能取值上都与真实映射函数𝑦 = 𝑔(𝒙)一致或与真实条件概率分布𝑝𝑟(𝑦|𝒙)一致。即|𝑓(𝒙,𝜃∗) − 𝑦| &lt; 𝜖, ∀(𝒙,𝑦) ∈ 𝒳 × 𝒴，|𝑓𝑦(𝒙,𝜃∗) − 𝑝𝑟(𝑦|𝒙)| &lt; 𝜖, ∀(𝒙,𝑦) ∈ 𝒳 × 𝒴（这里计算两个分布的相似性更好的方式是使用KL散度或交叉熵），其中𝜖是一个很小的正数，𝑓𝑦(𝒙,𝜃∗)为模型预测的条件概率分布中𝑦对应的概率。</p>
+<p><strong>期望风险（Expected Risk）</strong> or 期望错误（Expected Error）</p>
+<p>模型𝑓(𝒙;𝜃)的好坏可以通过期望风险（Expected Risk）ℛ(𝜃)来衡量，其定义为：</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126213547931.png" alt="image-20211126213547931"></p>
+<p><strong>经验风险（Empirical Risk）</strong></p>
+<p>但是因为不知道真实分布，所以期望风险是无法计算的，我们可以计算的只是经验风险（Empirical Risk）。给定训练集，在训练集上的平均损失为：</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126215056079.png" alt="image-20211126215056079"></p>
+<p><strong>经验风险最小化（Empirical Risk Minimization，ERM）准则</strong></p>
+<p>因此，一个切实可行的学习准则是找到一组参数𝜃∗ 使得经验风险最小，即</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126215124835.png" alt="image-20211126215124835"></p>
+<p>这就是经验风险最小化（Empirical Risk Minimization，ERM）准则。</p>
+<p><strong>过拟合（Overfitting）与欠拟合（Underfitting）</strong></p>
+<p>当我们给定的数据集足够多，经验风险就无限逼近期望风险，然而这不符合实际。实际我们只能获得有限样本且样本中包含一定噪声，不能很好反映全部数据的真实分布。使用经验风险最小化原则很容易导致模型在训练集上错误率很低，但在未知数据上错误率很高，这就是过拟合（Overfitting）。与过拟合对立的概念是欠拟合（Underfitting），即模型不能很好地拟合训练数据，在训练集上的错误率比较高。</p>
+<p>过拟合问题往往是由于训练数据少和噪声以及模型能力强等原因造成的，欠拟合一般是由于模型能力不足造成的。</p>
+<p><strong>结构风险最小化（Structure Risk Minimization，SRM）准则</strong></p>
+<p>为了解决过拟合问题，就要在经验风险最小化的基础上再引入参数的**正则化（Regularization）**来限制模型的能力，使其不要拟合的那么完美，这种准则叫结构风险最小化（Structure Risk Minimization，SRM）准则。</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126215302483.png" alt="image-20211126215302483"></p>
+<p>其中‖𝜃‖是ℓ2 范数的正则化项，用来减少参数空间，避免过拟合；𝜆用来控制正则化的强度。</p>
+<p>关于正则的具体介绍后续再讲。</p>
+<p><strong>损失函数（Loss Function）</strong></p>
+<p>接下来谈谈期望风险和经验风险都提到的损失函数，损失函数用于量化两个变量之间的差异。其实损失函数有很多种，常见的有：</p>
+<ul>
+<li>
+<p><strong>0-1 损失函数（0-1 Loss Function）</strong>：虽然可以客观评价模型好坏，但数学性质不好，不常用。</p>
+<ul>
+<li>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">L</mi><mo stretchy="false">(</mo><mi>y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo><mtext> </mtext><mtext> </mtext><mrow><mi mathvariant="sans-serif">i</mi><mi mathvariant="sans-serif">f</mi></mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><mtext> </mtext><mtext> </mtext><mrow><mi mathvariant="sans-serif">i</mi><mi mathvariant="sans-serif">f</mi></mrow><mi>y</mi><mi mathvariant="normal">≠</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable></mrow><mspace linebreak="newline"></mspace><mo>=</mo><mi>I</mi><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">≠</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}(y,f(x;\theta)) = 
+\begin{cases}
+0, \, \,\mathsf{if} y=f(x;\theta)\\
+1, \, \,\mathsf{if} y\neq f(x;\theta)\\
+\end{cases}
+\\
+= I(y\neq f(x;\theta))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal">L</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathsf">i</span><span class="mord mathsf" style="margin-right:0.06944em;">f</span></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathsf">i</span><span class="mord mathsf" style="margin-right:0.06944em;">f</span></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>
+<p>标签等于真实值损失就为0，标签不等于真实值损失就为1</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>平方损失函数（Quadratic Loss Function）</strong>：经常在预测标签y为实数值的任务中，一般不适用于分类。</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">L</mi><mo stretchy="false">(</mo><mi>y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false">(</mo><mi>y</mi><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\mathcal{L}(y,f(x;\theta)) = \frac{1}{2}(y-f(x;\theta))^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal">L</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+<li>
+<p><strong>交叉熵损失函数（Cross-Entropy Loss Function）</strong>：一般用于分类问题。</p>
+<ul>
+<li>对于两个概率分布，一般可以用交叉熵来衡量它们的差异。<img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126212553229.png" alt="image-20211126212553229"></li>
+</ul>
+</li>
+<li>
+<p>所以标签的真实分布𝒚和模型预测分布𝑓(𝒙;𝜃)之间的交叉熵损失函数为</p>
+<ul>
+<li><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211126212806613.png" alt="image-20211126212806613"></li>
+</ul>
+</li>
+<li>
+<p><strong>Hinge损失函数（Hinge Loss Function）</strong></p>
+<ul>
+<li>ℒ(𝑦,𝑓(𝒙;𝜃)) = max(0,1 − 𝑦𝑓(𝒙;𝜃))</li>
+</ul>
+<p>总之，**机器学习中的学习准则并不仅仅是拟合训练集上的数据，同时也要使得泛化错误最低。给定一个训练集，机器学习的目标是从假设空间中找到一个泛化错误较低的“理想”模型，以便更好地对未知的样本进行预测，特别是不在训练集中出现的样本。**因此，我们可以将机器学习看作一个从有限、高维、有噪声的数据上得到更一般性规律的泛化问题。</p>
+</li>
+</ul>
+<h3 id="223-优化算法"><a class="markdownIt-Anchor" href="#223-优化算法"></a> 2.2.3 优化算法</h3>
+<p>在确定了训练集𝒟、假设空间ℱ 以及学习准则后，如何找到最优的模型𝑓(𝒙,𝜃∗)就成了一个最优化（Optimization）问题。机器学习的训练过程其实就是最优化问题的求解过程。优化是指用优化算法去解决问题。</p>
+<p>优化指的是模型参数的优化，即优化模型𝑓(𝒙,𝜃)中的𝜃，要与超参数做区分，超参数是用来定义模型结构或优化策略的，超参数的优化一般靠人为按经验设定。</p>
+<p>机器学习算法想要把优化目标构造成<strong>凸函数</strong>，因为凸函数有全局最优解，凸优化也有很多成熟的优化方法。像神经网络这种模型的优化目标是非凸的，只能找局部最优解。</p>
+<p><strong>梯度下降法（Gradient Descent）</strong></p>
+<p>在机器学习中，最简单、常用的优化算法就是梯度下降法，即首先初始化模型参数，然后按照下面的迭代公式去计算训练集D上经验风险的最小值：</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211129150459097.png" alt="image-20211129150459097"></p>
+<p>其中𝜃𝑡 为第𝑡次迭代时的参数值，𝛼为搜索步长．在机器学习中，𝛼一般称为<strong>学习率（Learning Rate）</strong>。</p>
+<p>上式的目标函数是整个训练集上的风险函数，这种方式称为</p>
+<ul>
+<li>**批量梯度下降法（Batch Gradient Descent，BGD）**每次迭代都要计算每个样本的损失函数的梯度并求和。</li>
+<li>**随机梯度下降法（Stochastic Gradient Descent，SGD）**每次迭代时只采集一个样本，计算这个样本损失函数的梯度并更新参数。随机梯度下降相当于在批量梯度下降的梯度上引入了随机噪声。在非凸优化问题中，随机梯度下降更容易逃离局部最优点。</li>
+<li>**小批量梯度下降法（Mini-Batch Gradient Descent）**每次迭代随机选取K个训练样本来计算梯度并更新参数。K一般取1~100之间，实际应用中通常为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span> 。</li>
+</ul>
+<p><strong>提前停止（Early Stop）策略</strong></p>
+<p>为了防止过拟合，除了2.2.2节提到的添加正则化项的方法，还可以使用提前停止（Early Stop）的策略——使用验证集进行模型选择，如果模型在验证集上的错误率不再下降就停止迭代。这样做是为了保证不在训练集上过拟合。</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211129150838302.png" alt="image-20211129150838302"></p>
+<h2 id="23-机器学习的简单示例线性回归"><a class="markdownIt-Anchor" href="#23-机器学习的简单示例线性回归"></a> 2.3 机器学习的简单示例——线性回归</h2>
+<p>自变量是样本的特征向量x，因变量是标签y，假设空间是一组参数化的线性函数𝑓(𝒙; 𝒘, 𝑏) = 𝒘T𝒙 + 𝑏，权重向量w和偏置b都是可学习的参数，函数𝑓(𝒙; 𝒘, 𝑏)称为线性模型。上式简写为𝑓(𝒙; 𝒘) = 𝒘Tx。</p>
+<p>现在要做的就是给定训练集，学习模型参数w，用什么原则学习？</p>
+<ul>
+<li>经验风险最小化
+<ul>
+<li>由于线性回归的标签𝑦和模型输出都为连续的实数值，因此平方损失函数非常合适衡量真实标签和预测标签之间的差异。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>y</mi><mo>−</mo><msup><mi>X</mi><mi>T</mi></msup><mi>w</mi><mi mathvariant="normal">∣</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R(w)=\frac{1}{2}||y-X^Tw||^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>，可以令R(w)对w的偏导等于0求解最优参数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>w</mi><mo>∗</mo></msup><mo>=</mo><mo stretchy="false">(</mo><mi>X</mi><msup><mi>X</mi><mi>T</mi></msup><msup><mo stretchy="false">)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>X</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">w^*=(XX^T)^{-1}Xy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.688696em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> ，这种求解线性回归参数的方法也叫<strong>最小二乘法（Least Square Method，LSM）</strong>。</li>
+<li>最小二乘法的基本要求是各个特征之间要互相独立，保证 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><msup><mi>X</mi><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">XX^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span> 可逆，如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><msup><mi>X</mi><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">XX^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span> 不可逆，可以（1）先PCA预处理消除特征相关性后再最小二乘（2）利用梯度下降法来估计参数，先设𝒘=0，再用𝒘 ← 𝒘 + 𝛼𝑿(𝒚 − 𝑿 T𝒘)进行迭代，这种求解方法也称为<strong>最小均方（Least Mean Squares，LMS）算法</strong>。</li>
+</ul>
+</li>
+<li>结构风险最小化
+<ul>
+<li>最小二乘法要保证可逆，但即便是可逆，最终计算也不稳定。为了解决这个问题，提出<strong>岭回归（Ridge Regression）</strong>——给𝑿𝑿 T 的对角线元素都 加上一个常数𝜆使得(𝑿𝑿 T + 𝜆𝐼)满秩，即其行列式不为0．最优的参数𝒘∗ 为𝒘∗ = (𝑿𝑿 T + 𝜆𝐼)−1𝑿y。其中𝜆 &gt; 0为预先设置的超参数，𝐼 为单位矩阵。</li>
+<li>岭回归的解𝒘∗ 可以看作结构风险最小化准则下的最小二乘法估计，其目标 函数可以写为：<img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211130112717287.png" alt="image-20211130112717287"></li>
+</ul>
+</li>
+<li>最大似然估计
+<ul>
+<li>从建模条件概率𝑝(𝑦|𝒙)的角度进行参数估计</li>
+<li>给函数𝑓(𝒙; 𝒘) = 𝒘T𝑦 添加随机噪声，𝑦 = 𝒘T𝒙 + 𝜖，y服从均值为𝒘T𝒙 、方差为 𝜖的高斯分布，然后对该分布在训练集上做似然函数，取对数最终得到<strong>对数似然函数（Log Likelihood）</strong>，找到一组参数w使对数似然函数最大，称为<strong>最大似然估计（Maximum Likelihood Estimation，MLE）</strong>，也就是求对数似然函数对w的梯度，令其等于0，得到相同的解<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>w</mi><mrow><mi>M</mi><mi>L</mi></mrow></msup><mo>=</mo><mo stretchy="false">(</mo><mi>X</mi><msup><mi>X</mi><mi>T</mi></msup><msup><mo stretchy="false">)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>X</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">w^{ML}=(XX^T)^{-1}Xy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mord mathdefault mtight">L</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 。</li>
+<li>MLE的一个缺点是当训练数据比较少时会发生过拟合，估计的参 数可能不准确。</li>
+</ul>
+</li>
+<li>最大后验估计
+<ul>
+<li>为了避免MLE的容易过拟合问题，可以给参数加上一些先验知识。</li>
+<li>假设参数w服从一个先验分布，由贝叶斯公式可以得到w的后验分布𝑝(𝒘|𝑿, 𝒚; 𝜈, 𝜎)（也就是我们想要的分布）取决于（不是等于）w的似然函数和w的先验相乘，这种估计参数 𝒘 的后验概率分布的方法称为<strong>贝叶斯估计（Bayesian Estimation）</strong>。</li>
+<li>贝叶斯估计是一种参数的区间估计，即参数在一个区间上的分布．如果我们希望得到一个最优的参数值（即点估计），可以使用最大后验估计。</li>
+<li>**最大后验估计（Maximum A Posteriori Estimation，MAP）**是指最优参数为后验分布 𝑝(𝒘|𝑿, 𝒚; 𝜈, 𝜎)中概率密度最高的参数，也就是 $w^{MAP}=argmaxp(y|X,w;\sigma)p(w;\nu)</li>
+<li>后验分布的对数为似然函数的对数+先验分布的对数，最后得到最大后验概率等价于平方损失的结构风险最小化，其中正则化系数𝜆 = 𝜎2 /𝜈2。</li>
+</ul>
+</li>
+</ul>
+<p>最大似然估计和贝叶斯估计可以分别看作频率学派和贝叶斯学派对需要估计的参数𝒘的不同解释。频率学派将模型参数 𝜃 看作固定常数；而贝叶斯学派将参数 𝜃 看作随机变量，并且存在某种先验 分布。当𝜈 → ∞时，先验分布𝑝(𝒘; 𝜈)退化为均匀分布，称为无信息先验（Non-Informative Prior），最大后验估计退化为最大似然估计。</p>
+<h2 id="24-偏差-方差分解"><a class="markdownIt-Anchor" href="#24-偏差-方差分解"></a> 2.4 偏差-方差分解</h2>
+<h2 id="25-机器学习算法的类型"><a class="markdownIt-Anchor" href="#25-机器学习算法的类型"></a> 2.5 机器学习算法的类型</h2>
+<h2 id="26-数据的特征表示"><a class="markdownIt-Anchor" href="#26-数据的特征表示"></a> 2.6 数据的特征表示</h2>
+<h2 id="27-评价指标"><a class="markdownIt-Anchor" href="#27-评价指标"></a> 2.7 评价指标</h2>
+<h2 id="28-理论和定理"><a class="markdownIt-Anchor" href="#28-理论和定理"></a> 2.8 理论和定理</h2>
+<h2 id="29-总结和深入阅读"><a class="markdownIt-Anchor" href="#29-总结和深入阅读"></a> 2.9 总结和深入阅读</h2>
+<p>如果需要快速全面地了解机器学习的基本概念和体系，可以阅读</p>
+<ul>
+<li>
+<p>《Pattern Classification》[Duda et al., 2001]</p>
+</li>
+<li>
+<p>《Machine Learning: a Probabilistic Perspective》[Murphy, 2012]</p>
+</li>
+<li>
+<p>《机器学习》[周志华, 2016]</p>
+</li>
+<li>
+<p>《统计学习方法》[李航, 2019]</p>
+</li>
+</ul>
+<p>统计学习知识 略</p>
+<p>表示学习 略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">2.1</span><br><span class="line">并不是所有的样本特征都是数值型，需要通过转换表示为特征向量，参见第2.6节</span><br><span class="line">第2.7节中会介绍更多的评价方法</span><br><span class="line"></span><br><span class="line">2.2 </span><br><span class="line">。对于分类问题，一般为广义线性函数，参见公式(3.3)．</span><br><span class="line">~这里两个分布相似性的定义不太严谨，更好的方式为KL散度或交叉熵</span><br><span class="line">参见习题2-1．</span><br><span class="line">。交叉熵参见第E.3.1节</span><br><span class="line">Hinge损失函数参见第3.5.3节</span><br><span class="line">如何选择训练样本个数可以参考PAC学习理论，参见第2.8.1节</span><br><span class="line">更多的正则化方法参见第7.7节</span><br><span class="line">ℓ1 范数的稀疏性参见第7.7.1节</span><br><span class="line">正则化的贝叶斯解释参见第2.3.1.4节</span><br><span class="line">超 参 数 的 优 化 参 见第7.6节．</span><br><span class="line">梯 度 下 降 法 参 见第C.2.2节．</span><br><span class="line">2.3</span><br><span class="line">参见习题2-2</span><br><span class="line">参见习题2-3．</span><br><span class="line">参见习题2-4</span><br><span class="line">参见习题2-5．</span><br><span class="line">贝 叶 斯 公 式 参 见 公式(D.32)．</span><br><span class="line">统 计 推 断 参 见第11.3节．</span><br></pre></td></tr></table></figure>
+<h1 id="3-线性模型"><a class="markdownIt-Anchor" href="#3-线性模型"></a> 3 线性模型</h1>
+<p><strong>线性模型（Linear Model）是通过样本<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>特征(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>x</mi><mi>D</mi></msub><msup><mo stretchy="false">]</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">[x_1,...,x_D]^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span>)的线性组合(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msub><mi>w</mi><mi>D</mi></msub><msub><mi>x</mi><mi>D</mi></msub><mo>+</mo><mi>b</mi><mo>=</mo><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(x;w)=w_1x_1+w_2x_2+...+w_Dx_D+b=w^Tx+b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.924661em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>)来进行预测的模型</strong>。</p>
+<ul>
+<li>回归问题里线性回归就是典型的线性模型，直接用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x;w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span>来进行预测输出目标 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=f(x;w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></li>
+<li>分类问题则需要把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x;w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span> 映射为离散值，因此引入了非线性的<strong>决策函数（Decision Function）</strong> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span> 来预测输出目标 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=g(f(x;w))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span> ，在这里<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x;w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span> 也称为<strong>判别函数（Discriminant Function）</strong>。
+<ul>
+<li>二分类问题中判别函数可以使用<strong>符号函数（Sign Function）</strong>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x;w)&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 时，y=1， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x;w)&lt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 时，y=-1，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x;w)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 时，不预测。</li>
+</ul>
+</li>
+</ul>
+<p>四种线性分类模型，根据使用不同的损失函数做区分。</p>
+<ul>
+<li>Logistic回归</li>
+<li>Softmax回归</li>
+<li>感知器</li>
+<li>支持向量机</li>
+</ul>
+<h2 id="31-线性判别函数和决策边界"><a class="markdownIt-Anchor" href="#31-线性判别函数和决策边界"></a> 3.1 线性判别函数和决策边界</h2>
+<p>由公式 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=g(f(x;w))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span> 可知，一个线性分类模型（Linear Classification Model）或线性分类器（Linear Classifier），是由一个或多个线性的判别函数和非线性的决策函数组成的。</p>
+<h3 id="311-二分类"><a class="markdownIt-Anchor" href="#311-二分类"></a> 3.1.1 二分类</h3>
+<p>二分类（Binary Classification）问题中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(x;w)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的点组成了一个分割超平面（Hyperplane），称为决策边界（Decision Boundary）或决策平面（Decision Surface），决策边界将特征空间一分为二，分为两个区域，每个区域对应一个类别。</p>
+<p>所谓“线性分类模型”就是指其决策边界是线性超平面。</p>
+<p>超平面就是三维空间中的平面在更高维空间的推广。𝐷 维空间中的超平面是 𝐷 − 1 维 的。在二维空间中，决策边界为一个直线；在三维空间中，决策边界为一个平面；在高维空间中，决策边界为一个超平面。</p>
+<p>在特征空间中，决策平面与权重向量 𝒘 正交。特征空间中每个样本点到决策平面的有向距离（Signed Distance）为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>γ</mi><mo>=</mo><mfrac><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\gamma=\frac{f(x;w)}{||w||}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mtight">∣</span><span class="mord mtight">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">x</span><span class="mpunct mtight">;</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> ， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span></span></span></span> 可以看做是x在w方向上的投影。</p>
+<p><img src="/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/image-20211130160935048.png" alt="image-20211130160935048"></p>
+<p>线性模型想要拟合的参数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>w</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">w^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.688696em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span> 要尽量满足 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mi>f</mi><mo stretchy="false">(</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup><mo separator="true">;</mo><msup><mi>w</mi><mo>∗</mo></msup><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn><mo separator="true">,</mo><mi mathvariant="normal">∀</mi><mi>n</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mi>N</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">y^{(n)}f(x^{(n)};w^*)&gt;0, \forall n\in [1,N]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∀</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">]</span></span></span></span> 。</p>
+<p>学习参数就要定义合适的损失函数以及优化方法。</p>
+<ul>
+<li>
+<p>二分类问题，最直接的损失函数可选择0-1损失函数，但是数学性质不好。</p>
+</li>
+<li>
+<p>多分类问题，一般需要多个线性判别函数，但设计这些判别函数有很多形式</p>
+<ul>
+<li>“一对其余”方式：把多分类问题转换为 𝐶 个“一对其余”的二分类问题。这种方式共需要 𝐶 个判别函数，其中第 𝑐 个判别函数 𝑓𝑐 是将类别 𝑐 的样本和不属于类别𝑐的样本分开。</li>
+<li>“一对一”方式：把多分类问题转换为 𝐶(𝐶 − 1)/2 个“一对一”的二分 类问题。这种方式共需要𝐶(𝐶 − 1)/2个判别函数，其中第(𝑖, 𝑗)个判别函数是把类 别𝑖 和类别𝑗 的样本分开。</li>
+<li>“argmax”方式：这是一种改进的“一对其余”方式，对于样本𝒙，如果存在一个类别𝑐，相对于所有的其他类别 ̃𝑐( ̃𝑐 ≠ 𝑐)有𝑓𝑐 (𝒙; 𝒘𝑐 ) &gt; 𝑓𝑐̃ (𝒙, 𝒘𝑐̃ )，那么𝒙属于类别𝑐。</li>
+<li>前两种方式都有在一个缺陷：特征空间中会存在一些难以确定类别的区域，而“argmax”方式则解决了这个问题。</li>
+<li>根据“多类线性可分”的定义，如果数据集是多类线性可分的，那么一定存在一个“argmax” 方式的线性分类器可以将它们正确分开。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3.1</span><br><span class="line">参见习题3-2</span><br><span class="line">参见习题3-3</span><br><span class="line">参见习题3-4</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://liujinqin.github.io/2021/11/13/%E3%80%8A%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E9%82%B1%E9%94%A1%E9%B9%8F/" title="《神经网络与深度学习》邱锡鹏" target="_blank" rel="external">https://liujinqin.github.io/2021/11/13/《神经网络与深度学习》邱锡鹏/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/LiuJinQin" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/LiuJinQin" target="_blank"><span class="text-dark">L&#39;s Blog</span><small class="ml-1x"></small></a></h3>
+        <div></div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/11/13/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="hexo搭建博客"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,qzone,wechat#,douban,diandian,facebook,twitter,google,linkedin" data-mobile-sites="weibo,qq,qzone,wechat#,douban,diandian,facebook,twitter,google,linkedin"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LiuJinQin" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://www.zhihu.com/people/liu-jin-qin-88/posts" target="_blank" title="Zhihu" data-toggle=tooltip data-placement=top><i class="icon icon-zhihu"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
